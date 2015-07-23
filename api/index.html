@@ -59,7 +59,7 @@ https://github.com/fortunejs/fortune/tree/master/website
         --><!--
         --><!--
         --><span class="arrow">⇒</span><!--
-        --><span class="return">this</span><!--
+        --><span class="return">Fortune</span><!--
         --><!--
       --><a href="#fortune-definetype" class="anchor">#</a></h2><p>Define a record type given a name and a set of field definitions. The <code>fields</code> object only serves to enforce data types, and may be extended by the specific <code>Adapter</code> to express more, such as validations, uniqueness, indexing, etc. Here are some example field definitions:</p><pre><code class="lang-js">{
   // A singular value.
@@ -131,7 +131,7 @@ https://github.com/fortunejs/fortune/tree/master/website
         --><!--
         --><!--
         --><span class="arrow">⇒</span><!--
-        --><span class="return">this</span><!--
+        --><span class="return">Fortune</span><!--
         --><!--
       --><a href="#fortune-transform" class="anchor">#</a></h2><p>Define a transformation per record type.</p><p>A transform function takes at least two arguments, the internal <code>context</code> object and a single <code>record</code>.</p><p>There are two kinds of transforms, before a record is written to transform input, and after it is read to transform output, either is optional. If an error occurs within an transform function, it will be forwarded to the response. Use typed errors to provide the appropriate feedback. It is important to note that <code>output</code> transforms are run every time a record is shown in a response, so it should be idempotent.</p><p>For a create request, the input transform must return the second argument <code>record</code> either synchronously, or asynchronously as a Promise. The return value of an update or delete request is inconsequential, but it may return a value or a Promise.</p><p>An example transform to apply a timestamp on a record before creation, and displaying the timestamp in the server&#39;s locale:</p><pre><code class="lang-js">app.transform(<span class="hljs-function"><span class="hljs-params">(context, record)</span> =&gt;</span> {
   record.timestamp = <span class="hljs-keyword">new</span> Date()
@@ -146,7 +146,7 @@ https://github.com/fortunejs/fortune/tree/master/website
         --><!--
         --><!--
         --><span class="arrow">⇒</span><!--
-        --><span class="return">this</span><!--
+        --><span class="return">Fortune</span><!--
         --><!--
       --><a href="#fortune-transforminput" class="anchor">#</a></h2><p>Convenience method to define only the <code>input</code> argument of a transform.</p><h2 id="fortune-transformoutput">Fortune.<span class="key">transformOutput</span><!--
         --><!--
@@ -154,7 +154,7 @@ https://github.com/fortunejs/fortune/tree/master/website
         --><!--
         --><!--
         --><span class="arrow">⇒</span><!--
-        --><span class="return">this</span><!--
+        --><span class="return">Fortune</span><!--
         --><!--
       --><a href="#fortune-transformoutput" class="anchor">#</a></h2><p>Convenience method to define only the <code>output</code> argument of a transform.</p><h2 id="fortune-create"><span class="class">static</span> Fortune.<span class="key">create</span><!--
         --><!--

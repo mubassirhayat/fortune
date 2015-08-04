@@ -3,9 +3,9 @@
 This page is automatically generated. See:
 https://github.com/fortunejs/fortune/tree/master/website
 
---><html lang="en"><head><title>API Reference</title><meta name="viewport" content="width=device-width,initial-scale=1"><meta charset="utf-8"><link rel="icon" href="../assets/piggu.png"><link rel="stylesheet" href="../assets/style.css"></head><body><main><nav><a href="../"><img src="../assets/piggu.svg" alt="Piggu" class="logo"></a><!--
-        --><a href="../"><img src="../assets/fortune_type.svg" alt="Fortune.js" class="type"></a><ul class="docs"><li><a href="../getting-started/">Getting Started<span>⚙</span></a></li><li><a href="../plugins/">Plugins<span>⚒</span></a></li><li><a href="../changelog/">Changelog<span>⚐</span></a></li><li><a href="../contributing/">Contributing<span>✤</span></a></li><li><a href="../caveats/">Caveats<span>⚖</span></a></li><li><a href="../api/">API Reference<span>⏣</span></a></li></ul><h4>Fortune</h4><ul class="api"><li><a href="../api/#fortune">Fortune</a></li><li><a href="../api/#fortune-constructor">constructor</a></li><li><a href="../api/#fortune-connect">connect</a></li><li><a href="../api/#fortune-disconnect">disconnect</a></li><li><a href="../api/#fortune-definetype">defineType</a></li><li><a href="../api/#fortune-request">request</a></li><li><a href="../api/#fortune-transform">transform</a></li><li><a href="../api/#fortune-transforminput">transformInput</a></li><li><a href="../api/#fortune-transformoutput">transformOutput</a></li><li><a href="../api/#fortune-create">create</a></li></ul><h4>Adapter</h4><ul class="api"><li><a href="../api/#adapter">Adapter</a></li><li><a href="../api/#adapter-constructor">constructor</a></li><li><a href="../api/#adapter-connect">connect</a></li><li><a href="../api/#adapter-disconnect">disconnect</a></li><li><a href="../api/#adapter-create">create</a></li><li><a href="../api/#adapter-find">find</a></li><li><a href="../api/#adapter-update">update</a></li><li><a href="../api/#adapter-delete">delete</a></li><li><a href="../api/#adapter-begintransaction">beginTransaction</a></li><li><a href="../api/#adapter-endtransaction">endTransaction</a></li><li><a href="../api/#adapter-applyoperators">applyOperators</a></li></ul><h4>Serializer</h4><ul class="api"><li><a href="../api/#serializer">Serializer</a></li><li><a href="../api/#serializer-constructor">constructor</a></li><li><a href="../api/#serializer-processrequest">processRequest</a></li><li><a href="../api/#serializer-processresponse">processResponse</a></li><li><a href="../api/#serializer-showresponse">showResponse</a></li><li><a href="../api/#serializer-showerror">showError</a></li><li><a href="../api/#serializer-parsecreate">parseCreate</a></li><li><a href="../api/#serializer-parseupdate">parseUpdate</a></li><li class="property"><a href="../api/#serializer-id">id</a></li></ul><h4>Net</h4><ul class="api"><li><a href="../api/#net-http">http</a></li><li><a href="../api/#net-websocket">websocket</a></li></ul></nav><section><header><a href="https://www.npmjs.com/package/fortune">npm</a><!--
-          --><a href="https://github.com/fortunejs/fortune">GitHub</a></header><article><div class="api"><h6>Fortune <span>(<a href="https://github.com/fortunejs/fortune/blob/master/lib/core.js"><em>core.js</em></a>)</span></h6><h2 id="fortune"><span class="class">class</span> Fortune<!--
+--><html lang="en"><head><title>API Reference</title><meta name="viewport" content="width=device-width,initial-scale=1"><meta charset="utf-8"><link rel="icon" href="../assets/piggu.png"><link rel="stylesheet" href="../assets/index.css"></head><body><header><a href="https://github.com/fortunejs/fortune" id="corner">Fork on GitHub</a> <a href="../"><img src="../assets/piggu.svg" alt="Piggu" class="emblem"></a> <a href="../"><img src="../assets/fortune_type.svg" alt="Fortune.js" class="logo-type"></a><nav><a href="../getting-started/">Getting Started</a><!--
+        --><a href="../api/">API Reference</a><!--
+        --><a href="../plugins/">Plugins</a></nav></header><article><div class="api"><h6>Fortune <span>(<a href="https://github.com/fortunejs/fortune/blob/master/lib/core.js"><em>core.js</em></a>)</span></h6><h2 id="fortune"><span class="class">class</span> Fortune<!--
         --><!--
         --><!--
       --><a href="#fortune" class="anchor">#</a></h2><p>This is the default export of the <code>fortune</code> module. The Fortune class subclasses the built-in <code>EventEmitter</code> class, and it has a few static properties attached to it that may be useful to access:</p><ul><li><code>Adapter</code>: abstract base class for the Adapter.</li><li><code>adapters</code>: included adapters, currently defaulting to NeDB for the server, and IndexedDB for the browser (with Web Storage as a fallback).</li><li><code>Serializer</code>: abstract base class for the Serializer.</li><li><code>serializers</code>: included serializers, currently Micro API and JSON API.</li><li><code>net</code>: network protocol helpers, currently HTTP and WebSocket.</li><li><code>errors</code>: custom typed errors, useful for throwing errors in transform functions.</li><li><code>methods</code>: a hash that maps strings to symbols. Available are: <code>find</code>, <code>create</code>, <code>update</code>, and <code>delete</code>.</li><li><code>change</code>: this is the symbol for the event that is emitted when a change is done. The callback function receives an object keyed by method symbols.</li></ul><p>Note: in the browser version, <code>serializers</code> and <code>net</code> are omitted.</p><h2 id="fortune-constructor"><span class="class">new</span> Fortune<!--
@@ -21,7 +21,7 @@ https://github.com/fortunejs/fortune/tree/master/website
   adapter: {
     <span class="hljs-comment">// Must be a class that extends `Fortune.Adapter`, or a function</span>
     <span class="hljs-comment">// that accepts the Adapter class and returns a subclass. Required.</span>
-    <span class="hljs-keyword">type</span>: Adapter <span class="hljs-subst">=&gt;</span> { <span class="hljs-attribute">...</span> },
+    <span class="hljs-keyword">type</span>: Adapter =&gt; { <span class="hljs-attribute">...</span> },
 
     <span class="hljs-comment">// An options object that is specific to the adapter. Optional.</span>
     options: { <span class="hljs-attribute">...</span> }
@@ -31,7 +31,7 @@ https://github.com/fortunejs/fortune/tree/master/website
   serializers: <span class="hljs-preprocessor">[</span>{
     <span class="hljs-comment">// Must be a class that extends `Fortune.Serializer`, or a function</span>
     <span class="hljs-comment">// that accepts the Serializer class and returns a subclass. Required.</span>
-    <span class="hljs-keyword">type</span>: Serializer <span class="hljs-subst">=&gt;</span> { <span class="hljs-attribute">...</span> },
+    <span class="hljs-keyword">type</span>: Serializer =&gt; { <span class="hljs-attribute">...</span> },
 
     <span class="hljs-comment">// An options object that is specific to the serializer. Optional.</span>
     options: { <span class="hljs-attribute">...</span> }
@@ -133,10 +133,21 @@ https://github.com/fortunejs/fortune/tree/master/website
         --><span class="arrow">⇒</span><!--
         --><span class="return">Fortune</span><!--
         --><!--
-      --><a href="#fortune-transform" class="anchor">#</a></h2><p>Define a transformation per record type.</p><p>A transform function takes at least two arguments, the internal <code>context</code> object and a single <code>record</code>.</p><p>There are two kinds of transforms, before a record is written to transform input, and after it is read to transform output, either is optional. If an error occurs within an transform function, it will be forwarded to the response. Use typed errors to provide the appropriate feedback. It is important to note that <code>output</code> transforms are run every time a record is shown in a response, so it should be idempotent.</p><p>For a create request, the input transform must return the second argument <code>record</code> either synchronously, or asynchronously as a Promise. The return value of an update or delete request is inconsequential, but it may return a value or a Promise.</p><p>An example transform to apply a timestamp on a record before creation, and displaying the timestamp in the server&#39;s locale:</p><pre><code class="lang-js">app.transform(<span class="hljs-function"><span class="hljs-params">(context, record)</span> =&gt;</span> {
-  record.timestamp = <span class="hljs-keyword">new</span> Date()
-  <span class="hljs-keyword">return</span> record
-}, <span class="hljs-function"><span class="hljs-params">(context, record)</span> =&gt;</span> {
+      --><a href="#fortune-transform" class="anchor">#</a></h2><p>Define a transformation per record type.</p><p>A transform function takes at least two arguments, the internal <code>context</code> object and a single <code>record</code>. A special case is the <code>update</code> argument for the <code>update</code> method.</p><p>There are two kinds of transforms, before a record is written to transform input, and after it is read to transform output, both are optional. If an error occurs within an transform function, it will be forwarded to the response. Use typed errors to provide the appropriate feedback. It is important to note that <code>output</code> transforms are run every time a record is shown in a response, so it should be idempotent.</p><p>For a create request, the input transform must return the second argument <code>record</code> either synchronously, or asynchronously as a Promise. The return value of a delete request is inconsequential, but it may return a value or a Promise. There is a special case of the <code>update</code> method accepting a <code>update</code> object as a third parameter, which must be returned synchronously or as a Promise.</p><p>An example transform to apply a timestamp on a record before creation, and displaying the timestamp in the server&#39;s locale:</p><pre><code class="lang-js"><span class="hljs-keyword">const</span> { methods } = fortune
+
+store.transform((context, record, update) =&gt; {
+  <span class="hljs-keyword">const</span> { request: { <span class="hljs-keyword">method</span> } } = context
+
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">method</span> === methods.create) {
+    record.timestamp = new <span class="hljs-type">Date</span>()
+    <span class="hljs-keyword">return</span> record
+  }
+
+  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">method</span> === methods.update) <span class="hljs-keyword">return</span> update
+
+  // <span class="hljs-type">If</span> we get here, <span class="hljs-keyword">return</span> value <span class="hljs-keyword">of</span> the delete <span class="hljs-keyword">method</span> doesn't matter.
+  <span class="hljs-keyword">return</span> null
+}, (context, record) =&gt; {
   record.timestamp = record.timestamp.toLocaleString()
   <span class="hljs-keyword">return</span> record
 })
@@ -236,22 +247,22 @@ https://github.com/fortunejs/fortune/tree/master/website
         --><span class="return">Promise</span><!--
         --><!--
       --><a href="#adapter-update" class="anchor">#</a></h2><p>Update records by IDs. Success should resolve to the number of records updated. The <code>updates</code> parameter should be an array of objects that correspond to updates by IDs. Each update object must be as follows:</p><pre><code class="lang-js">{
-  // ID to <span class="hljs-operator"><span class="hljs-keyword">update</span>. Required.
-  id: <span class="hljs-number">1</span>,
+  // ID to <span class="hljs-operator"><span class="hljs-keyword">update</span>. <span class="hljs-keyword">Required</span>.
+  <span class="hljs-keyword">id</span>: <span class="hljs-number">1</span>,
 
   // <span class="hljs-keyword">Replace</span> a <span class="hljs-keyword">value</span> <span class="hljs-keyword">of</span> a <span class="hljs-keyword">field</span>. <span class="hljs-keyword">Use</span> a <span class="hljs-string">`null`</span> <span class="hljs-keyword">value</span> <span class="hljs-keyword">to</span> unset a <span class="hljs-keyword">field</span>.
-  <span class="hljs-keyword">replace</span>: { name: <span class="hljs-string">'Bob'</span> },
+  <span class="hljs-keyword">replace</span>: { <span class="hljs-keyword">name</span>: <span class="hljs-string">'Bob'</span> },
 
-  // Append <span class="hljs-keyword">values</span> <span class="hljs-keyword">to</span> an <span class="hljs-built_in">array</span> <span class="hljs-keyword">field</span>. <span class="hljs-keyword">If</span> the <span class="hljs-keyword">value</span> <span class="hljs-keyword">is</span> an <span class="hljs-built_in">array</span>, <span class="hljs-keyword">all</span> <span class="hljs-keyword">of</span>
+  // Append <span class="hljs-keyword">values</span> <span class="hljs-keyword">to</span> an <span class="hljs-built_in">array</span> <span class="hljs-keyword">field</span>. <span class="hljs-keyword">If</span> the <span class="hljs-keyword">value</span> <span class="hljs-keyword">is</span> an <span class="hljs-built_in">array</span>, all <span class="hljs-keyword">of</span>
   // the <span class="hljs-keyword">values</span> should be pushed.
   push: { pets: <span class="hljs-number">1</span> },
 
-  // Remove <span class="hljs-keyword">values</span> <span class="hljs-keyword">from</span> an <span class="hljs-built_in">array</span> <span class="hljs-keyword">field</span>. <span class="hljs-keyword">If</span> the <span class="hljs-keyword">value</span> <span class="hljs-keyword">is</span> an <span class="hljs-built_in">array</span>, <span class="hljs-keyword">all</span> <span class="hljs-keyword">of</span>
+  // Remove <span class="hljs-keyword">values</span> <span class="hljs-keyword">from</span> an <span class="hljs-built_in">array</span> <span class="hljs-keyword">field</span>. <span class="hljs-keyword">If</span> the <span class="hljs-keyword">value</span> <span class="hljs-keyword">is</span> an <span class="hljs-built_in">array</span>, all <span class="hljs-keyword">of</span>
   // the <span class="hljs-keyword">values</span> should be removed.
   pull: { friends: [ <span class="hljs-number">2</span>, <span class="hljs-number">3</span> ] },
 
-  // The <span class="hljs-string">`operate`</span> object <span class="hljs-keyword">is</span> specific <span class="hljs-keyword">to</span> the adapter. This should take
-  // precedence over <span class="hljs-keyword">all</span> <span class="hljs-keyword">of</span> the above. Warning: <span class="hljs-keyword">using</span> this may bypass
+  // The <span class="hljs-string">`operate`</span> <span class="hljs-keyword">object</span> <span class="hljs-keyword">is</span> specific <span class="hljs-keyword">to</span> the adapter. This should take
+  // precedence <span class="hljs-keyword">over</span> all <span class="hljs-keyword">of</span> the above. <span class="hljs-keyword">Warning</span>: <span class="hljs-keyword">using</span> this may bypass
   // <span class="hljs-keyword">field</span> definitions <span class="hljs-keyword">and</span> referential integrity. <span class="hljs-keyword">Use</span> <span class="hljs-keyword">at</span> your own risk.
   operate: { ... }
 }</span>
@@ -359,19 +370,19 @@ https://github.com/fortunejs/fortune/tree/master/website
         --><span class="return">Function</span><!--
         --><!--
       --><a href="#net-http" class="anchor">#</a></h2><p>This function maps HTTP on to Fortune, it&#39;s a static method available at <code>Fortune.net.http</code>. The integration with Fortune is minimal, passing in which serializers to use, assigning request headers to the <code>meta</code> object, and reading the request body, and mapping the response from the <code>request</code> method on to the HTTP response. If the payload is an object, it will be cast into a JSON string. The listener function ends the response and returns a promise that is resolved when the response is ended. The returned promise may be rejected with the error response, providing a hook for error logging.</p><p>The options object may be formatted as follows:</p><pre><code class="lang-js">{
-  <span class="hljs-comment">// By default, the listener will end the response, set this to `true` if</span>
-  <span class="hljs-comment">// the response will be ended later.</span>
-  <span class="hljs-tag">skipResponse</span>: <span class="hljs-tag">false</span>,
+  // By default, the listener will <span class="hljs-operator"><span class="hljs-keyword">end</span> the response, <span class="hljs-keyword">set</span> this <span class="hljs-keyword">to</span> <span class="hljs-string">`true`</span> <span class="hljs-keyword">if</span>
+  // the response will be ended later.
+  skipResponse: <span class="hljs-literal">false</span>,
 
-  <span class="hljs-comment">// JSON specific settings.</span>
-  <span class="hljs-tag">json</span>: {
-    <span class="hljs-comment">// How many spaces to indent. For example, use `2` for pretty printing.</span>
-    <span class="hljs-attribute">spaces</span>: <span class="hljs-number">0</span>,
+  // <span class="hljs-keyword">JSON</span> specific <span class="hljs-keyword">settings</span>.
+  <span class="hljs-keyword">json</span>: {
+    // How many spaces <span class="hljs-keyword">to</span> indent. <span class="hljs-keyword">For</span> example, <span class="hljs-keyword">use</span> <span class="hljs-string">`2`</span> <span class="hljs-keyword">for</span> pretty printing.
+    spaces: <span class="hljs-number">0</span>,
 
-    <span class="hljs-comment">// Character encoding for buffers.</span>
-    <span class="hljs-attribute">bufferEncoding</span>: <span class="hljs-string">'base64'</span>
+    // <span class="hljs-built_in">Character</span> <span class="hljs-keyword">encoding</span> <span class="hljs-keyword">for</span> buffers.
+    bufferEncoding: <span class="hljs-string">'base64'</span>
   }
-}
+}</span>
 </code></pre><h2 id="net-websocket">Net.<span class="key">websocket</span><!--
         --><!--
           -->(<span class="parameter" title="Fortune">instance</span>, <span class="parameter" title="Object">options</span>, <span class="parameter" title="Function">[change]</span>)<!--
@@ -380,4 +391,4 @@ https://github.com/fortunejs/fortune/tree/master/website
         --><span class="arrow">⇒</span><!--
         --><span class="return">WebSocket.Server</span><!--
         --><!--
-      --><a href="#net-websocket" class="anchor">#</a></h2><p>This function returns a WebSocket server, which internally uses the <code>ws</code> module. The options are the same as those listed <a href="https://einaros.github.io/ws/">here</a>.</p><p>The change handler function is called with two arguments: the socket instance for each connection, and the change event. It may return a Promise which resolves to the data to send over the wire.</p><hr></div></article><footer><p>&copy; 2015 &nbsp;&mdash;&nbsp; <a href="https://raw.githubusercontent.com/fortunejs/fortune/master/LICENSE">MIT License</a></p></footer></section></main></body></html>
+      --><a href="#net-websocket" class="anchor">#</a></h2><p>This function returns a WebSocket server, which internally uses the <code>ws</code> module. The options are the same as those listed <a href="https://einaros.github.io/ws/">here</a>.</p><p>The change handler function is called with two arguments: the socket instance for each connection, and the change event. It may return a Promise which resolves to the data to send over the wire.</p><hr></div></article><footer><p>&copy; 2015 &nbsp;&mdash;&nbsp; <a href="https://raw.githubusercontent.com/fortunejs/fortune/master/LICENSE">MIT License</a></p></footer></body></html>

@@ -3,9 +3,9 @@
 This page is automatically generated. See:
 https://github.com/fortunejs/fortune/tree/master/website
 
---><html lang="en"><head><title>Getting Started</title><meta name="viewport" content="width=device-width,initial-scale=1"><meta charset="utf-8"><link rel="icon" href="../assets/piggu.png"><link rel="stylesheet" href="../assets/style.css"></head><body><main><nav><a href="../"><img src="../assets/piggu.svg" alt="Piggu" class="logo"></a><!--
-        --><a href="../"><img src="../assets/fortune_type.svg" alt="Fortune.js" class="type"></a><ul class="docs"><li><a href="../getting-started/">Getting Started<span>⚙</span></a></li><li><a href="../plugins/">Plugins<span>⚒</span></a></li><li><a href="../changelog/">Changelog<span>⚐</span></a></li><li><a href="../contributing/">Contributing<span>✤</span></a></li><li><a href="../caveats/">Caveats<span>⚖</span></a></li><li><a href="../api/">API Reference<span>⏣</span></a></li></ul><h4>Fortune</h4><ul class="api"><li><a href="../api/#fortune">Fortune</a></li><li><a href="../api/#fortune-constructor">constructor</a></li><li><a href="../api/#fortune-connect">connect</a></li><li><a href="../api/#fortune-disconnect">disconnect</a></li><li><a href="../api/#fortune-definetype">defineType</a></li><li><a href="../api/#fortune-request">request</a></li><li><a href="../api/#fortune-transform">transform</a></li><li><a href="../api/#fortune-transforminput">transformInput</a></li><li><a href="../api/#fortune-transformoutput">transformOutput</a></li><li><a href="../api/#fortune-create">create</a></li></ul><h4>Adapter</h4><ul class="api"><li><a href="../api/#adapter">Adapter</a></li><li><a href="../api/#adapter-constructor">constructor</a></li><li><a href="../api/#adapter-connect">connect</a></li><li><a href="../api/#adapter-disconnect">disconnect</a></li><li><a href="../api/#adapter-create">create</a></li><li><a href="../api/#adapter-find">find</a></li><li><a href="../api/#adapter-update">update</a></li><li><a href="../api/#adapter-delete">delete</a></li><li><a href="../api/#adapter-begintransaction">beginTransaction</a></li><li><a href="../api/#adapter-endtransaction">endTransaction</a></li><li><a href="../api/#adapter-applyoperators">applyOperators</a></li></ul><h4>Serializer</h4><ul class="api"><li><a href="../api/#serializer">Serializer</a></li><li><a href="../api/#serializer-constructor">constructor</a></li><li><a href="../api/#serializer-processrequest">processRequest</a></li><li><a href="../api/#serializer-processresponse">processResponse</a></li><li><a href="../api/#serializer-showresponse">showResponse</a></li><li><a href="../api/#serializer-showerror">showError</a></li><li><a href="../api/#serializer-parsecreate">parseCreate</a></li><li><a href="../api/#serializer-parseupdate">parseUpdate</a></li><li class="property"><a href="../api/#serializer-id">id</a></li></ul><h4>Net</h4><ul class="api"><li><a href="../api/#net-http">http</a></li><li><a href="../api/#net-websocket">websocket</a></li></ul></nav><section><header><a href="https://www.npmjs.com/package/fortune">npm</a><!--
-          --><a href="https://github.com/fortunejs/fortune">GitHub</a></header><article><h1>Getting Started</h1><p>Fortune provides generic features (mostly <a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> and <a href="https://en.wikipedia.org/wiki/Serialization">serialization</a>) intended to be used in web applications, or <a href="https://www.reddit.com/r/programming/comments/1a2mf7/programming_is_terriblelessons_learned_from_a/c8tjzl5"><em>skins around databases</em></a> for the haters. The purpose is to provide data persistence and manipulation given a set of record types that conform to <a href="http://fortunejs.com/api/#fortune-definetype">some limitations</a>.</p><p>The first thing you&#39;ll have to do is install <a href="https://nodejs.org/">Node.js</a> (if you&#39;re on Linux, install <code>nodejs</code> from your package manager). Optionally, you will need <a href="http://babeljs.io">Babel</a> to run ES6 code:</p><pre><code class="lang-sh">$ npm <span class="hljs-keyword">install</span> -g babel
+--><html lang="en"><head><title>Getting Started</title><meta name="viewport" content="width=device-width,initial-scale=1"><meta charset="utf-8"><link rel="icon" href="../assets/piggu.png"><link rel="stylesheet" href="../assets/index.css"></head><body><header><a href="https://github.com/fortunejs/fortune" id="corner">Fork on GitHub</a> <a href="../"><img src="../assets/piggu.svg" alt="Piggu" class="emblem"></a> <a href="../"><img src="../assets/fortune_type.svg" alt="Fortune.js" class="logo-type"></a><nav><a href="../getting-started/">Getting Started</a><!--
+        --><a href="../api/">API Reference</a><!--
+        --><a href="../plugins/">Plugins</a></nav></header><article><h1>Getting Started</h1><p>Fortune provides generic features (mostly <a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a> and <a href="https://en.wikipedia.org/wiki/Serialization">serialization</a>) intended to be used in web applications, or <a href="https://www.reddit.com/r/programming/comments/1a2mf7/programming_is_terriblelessons_learned_from_a/c8tjzl5"><em>skins around databases</em></a> for the haters. The purpose is to provide data persistence and manipulation given a set of record types that conform to <a href="http://fortunejs.com/api/#fortune-definetype">some limitations</a>.</p><p>The first thing you&#39;ll have to do is install <a href="https://nodejs.org/">Node.js</a> (if you&#39;re on Linux, install <code>nodejs</code> from your package manager). Optionally, you will need <a href="http://babeljs.io">Babel</a> to run ES6 code:</p><pre><code class="lang-sh">$ npm <span class="hljs-operator"><span class="hljs-keyword">install</span> -<span class="hljs-keyword">g</span> babel</span>
 </code></pre><p><em>Note: if the above did not work, you probably don&#39;t have permissions, <a href="https://docs.npmjs.com/getting-started/fixing-npm-permissions">here are workarounds</a>.</em></p><p>Then install Fortune from the command-line:</p><pre><code class="lang-sh">$ npm <span class="hljs-keyword">install</span> fortune
 </code></pre><p>Then create an empty <code>index.js</code> file next to the <code>node_modules</code> folder, and start by importing Fortune and creating an instance:</p><pre><code class="lang-js"><span class="hljs-keyword">import</span> fortune <span class="hljs-keyword">from</span> <span class="hljs-string">'fortune'</span>
 <span class="hljs-keyword">const</span> store = fortune.create()
@@ -20,7 +20,7 @@ store.defineType(<span class="hljs-string">'group'</span>, {
 <span class="hljs-label">  name:</span> { <span class="hljs-string">type:</span> String },
 <span class="hljs-label">  users:</span> { <span class="hljs-string">link:</span> <span class="hljs-string">'user'</span>, <span class="hljs-string">inverse:</span> <span class="hljs-string">'group'</span>, <span class="hljs-string">isArray:</span> <span class="hljs-literal">true</span> }
 })
-</code></pre><p>This defines a <code>user</code> record type that has a relationship to the <code>group</code> type. By default, relationships are to-one, unless <code>isArray</code> is specified. In this example, there is a many-to-many relationship between a user and a group. The <code>inverse</code> field specifies a corresponding field on the linked type, so that any update to either field will affect the other.</p><h2 id="transformation">Transformation<a class="anchor" href="#transformation" title="Link to this section “Transformation”">#</a></h2><p>Transformations can be defined per record type. Transform functions accept exactly two arguments, the <code>context</code> object, and the record. The record for an input transform may be the record to be created or deleted, or an updated record with updates applied. The method of an input transform may be any method except <code>find</code>, and an output transform may be applied to all methods.</p><p>Here are some implementation details for dealing with passwords:</p><pre><code class="lang-js"><span class="hljs-built_in">import</span> crypto from 'crypto'
+</code></pre><p>This defines a <code>user</code> record type that has a relationship to the <code>group</code> type. By default, relationships are to-one, unless <code>isArray</code> is specified. In this example, there is a many-to-many relationship between a user and a group. The <code>inverse</code> field specifies a corresponding field on the linked type, so that any update to either field will affect the other.</p><h2 id="transformation">Transformation<a class="anchor" href="#transformation" title="Link to this section “Transformation”">#</a></h2><p>Transformations can be defined per record type. Transform functions accept at least two arguments, the <code>context</code> object, the record, and optionally the <code>update</code> object for an <code>update</code> request. The method of an input transform may be any method except <code>find</code>, and an output transform may be applied to all methods.</p><p>Here are some implementation details for dealing with passwords:</p><pre><code class="lang-js"><span class="hljs-built_in">import</span> crypto from 'crypto'
 
 const [ iterations, keyLength, saltLength ] =
   [ Math.<span class="hljs-built_in">pow</span><span class="hljs-params">(<span class="hljs-number">2</span>, <span class="hljs-number">15</span>)</span>, Math.<span class="hljs-built_in">pow</span><span class="hljs-params">(<span class="hljs-number">2</span>, <span class="hljs-number">9</span>)</span>, Math.<span class="hljs-built_in">pow</span><span class="hljs-params">(<span class="hljs-number">2</span>, <span class="hljs-number">6</span>)</span> ]
@@ -42,59 +42,60 @@ const [ iterations, keyLength, saltLength ] =
     crypto.pbkdf2<span class="hljs-params">(password, salt, iterations, keyLength, <span class="hljs-params">(error, buffer)</span> =&gt;
       error ? reject<span class="hljs-params">(error)</span> : resolve<span class="hljs-params">(buffer)</span>)</span>)</span>
 }
-</code></pre><p>This is a pretty basic implementation using the <code>crypto</code> module provided by Node.js to check and generate passwords. For the user type, it would be a good idea to store the password as a cryptographically secure key, and to hide sensitive fields when displaying the record.</p><pre><code class="lang-js"><span class="hljs-keyword">const</span> { methods, errors } = fortune
+</code></pre><p>This is a pretty basic implementation using the <code>crypto</code> module provided by Node.js to check and generate passwords. For the user type, it would be a good idea to store the password as a cryptographically secure key, and to hide sensitive fields when displaying the record.</p><pre><code class="lang-js">const { methods, errors } = fortune
 
-store.transformInput('user', (context, record) =&gt; {
-  <span class="hljs-keyword">const</span> { <span class="hljs-keyword">method</span>, <span class="hljs-keyword">type</span>, meta } = context.request
-  <span class="hljs-keyword">const</span> { password, id } = record
-  <span class="hljs-keyword">let</span> { key, salt } = record
+store.transformInput('user', (context, record, <span class="hljs-operator"><span class="hljs-keyword">update</span>) =&gt; {
+  const { request: { method, <span class="hljs-keyword">type</span>, meta } } = <span class="hljs-keyword">context</span>
+  let { <span class="hljs-keyword">key</span>, <span class="hljs-keyword">salt</span>, <span class="hljs-keyword">password</span> } = <span class="hljs-built_in">record</span>
 
-  <span class="hljs-keyword">if</span> (<span class="hljs-keyword">method</span> === methods.create &amp;&amp; !password)
-    throw new errors.<span class="hljs-type">BadRequestError</span>(`<span class="hljs-type">Password</span> must be specified.`)
+  <span class="hljs-keyword">if</span> (method === methods.<span class="hljs-keyword">create</span> &amp;&amp; !<span class="hljs-keyword">password</span>)
+    throw <span class="hljs-keyword">new</span> <span class="hljs-keyword">errors</span>.BadRequestError(<span class="hljs-string">`Password must be specified.`</span>)
 
-  <span class="hljs-keyword">return</span> <span class="hljs-keyword">method</span> !== methods.create ? passwordCheck(
-    new <span class="hljs-type">Buffer</span>(meta['authorization'] || '', 'base64').toString(),
-    key, salt.toString()) : <span class="hljs-type">Promise</span>.resolve()
+  <span class="hljs-keyword">return</span> method !== methods.<span class="hljs-keyword">create</span> ? passwordCheck(
+    <span class="hljs-keyword">new</span> Buffer(meta[<span class="hljs-string">'authorization'</span>] || <span class="hljs-string">''</span>, <span class="hljs-string">'base64'</span>).toString(),
+    <span class="hljs-keyword">key</span>, <span class="hljs-keyword">salt</span>.toString()) : Promise.resolve()
 
   .catch(() =&gt; {
-    throw new errors.<span class="hljs-type">UnauthorizedError</span>(`<span class="hljs-type">Incorrect</span> password.`)
+    throw <span class="hljs-keyword">new</span> <span class="hljs-keyword">errors</span>.UnauthorizedError(<span class="hljs-string">`Incorrect password.`</span>)
   })
 
-  .then(() =&gt; {
-    // <span class="hljs-type">If</span> we're <span class="hljs-keyword">not</span> updating the password, don't need to <span class="hljs-keyword">do</span> more.
-    <span class="hljs-keyword">if</span> (!password || <span class="hljs-keyword">method</span> === methods.delete) <span class="hljs-keyword">return</span> record
+  .<span class="hljs-keyword">then</span>(() =&gt; {
+    <span class="hljs-keyword">if</span> (method === methods.<span class="hljs-keyword">delete</span>) <span class="hljs-keyword">return</span> <span class="hljs-literal">null</span>
+    <span class="hljs-keyword">if</span> (!<span class="hljs-keyword">password</span>) <span class="hljs-keyword">password</span> = <span class="hljs-keyword">update</span>.<span class="hljs-keyword">replace</span>.<span class="hljs-keyword">password</span>
+
     <span class="hljs-keyword">return</span> generateSalt()
-    .then(buffer =&gt; {
-      salt = buffer
-      <span class="hljs-keyword">return</span> generateKey(password, salt.toString())
+    .<span class="hljs-keyword">then</span>(buffer =&gt; {
+      <span class="hljs-keyword">salt</span> = buffer
+      <span class="hljs-keyword">return</span> generateKey(<span class="hljs-keyword">password</span>, <span class="hljs-keyword">salt</span>.toString())
     })
-    .then(buffer =&gt; {
-      key = buffer
-      record.key = key
-      record.salt = salt
-      <span class="hljs-keyword">if</span> (<span class="hljs-keyword">method</span> === methods.create) <span class="hljs-keyword">return</span> record
-      <span class="hljs-keyword">return</span> store.adapter.update(<span class="hljs-keyword">type</span>, {
-        id, replace: { key, salt }
-      }).then(() =&gt; record)
+    .<span class="hljs-keyword">then</span>(buffer =&gt; {
+      <span class="hljs-keyword">key</span> = buffer
+      <span class="hljs-keyword">if</span> (method === methods.<span class="hljs-keyword">create</span>) {
+        <span class="hljs-built_in">record</span>.<span class="hljs-keyword">key</span> = <span class="hljs-keyword">key</span>
+        <span class="hljs-built_in">record</span>.<span class="hljs-keyword">salt</span> = <span class="hljs-keyword">salt</span>
+        <span class="hljs-keyword">return</span> <span class="hljs-built_in">record</span>
+      }
+      <span class="hljs-keyword">update</span>.<span class="hljs-keyword">replace</span> = { <span class="hljs-keyword">key</span>, <span class="hljs-keyword">salt</span> }
+      <span class="hljs-keyword">return</span> <span class="hljs-keyword">update</span>
     })
   })
-})
-</code></pre><p>Input transform functions are run before anything gets persisted, so it is safe to throw errors. They may either synchronously return a value, or return a Promise. Note that the <code>password</code> field on the record is not defined in the record type. Arbitrary fields should be parsed on create and update but not persisted. Updating the password in this example requires a field in the <code>meta</code> object, for example <code>Authorization: &quot;Zm9vYmFyYmF6cXV4&quot;</code> where the value is the base64 encoded old password.</p><p>It may be required to transform outputs as well. In this example, we don&#39;t want expose the salt and the key publicly:</p><pre><code class="lang-js">store.transformOutput(<span class="hljs-string">'user'</span>, <span class="hljs-function"><span class="hljs-params">(context, record)</span> =&gt;</span> {
+})</span>
+</code></pre><p>Input transform functions are run before anything gets persisted, so it is safe to throw errors. They may either synchronously return a value, or return a Promise. Note that the <code>password</code> field on the record is not defined in the record type, arbitrary fields are not persisted. Updating the password in this example requires a field in the <code>meta</code> object, for example <code>Authorization: &quot;Zm9vYmFyYmF6cXV4&quot;</code> where the value is the base64 encoded old password.</p><p>It may be required to transform outputs as well. In this example, we don&#39;t want expose the salt and the key publicly:</p><pre><code class="lang-js">store.transformOutput(<span class="hljs-string">'user'</span>, <span class="hljs-function"><span class="hljs-params">(context, record)</span> =&gt;</span> {
   <span class="hljs-regexp">//</span> Hide sensitive fields.
   <span class="hljs-keyword">delete</span> record.salt
   <span class="hljs-keyword">delete</span> record.key
   <span class="hljs-keyword">return</span> record
 })
-</code></pre><p>The output transform has the same arguments as the input transform, but is applied on all requests. Some serializers may not show the resolved value of the output transform for certain requests, such as updating and deleting. It must return the record, either synchronously or as a promise.</p><h2 id="finishing">Finishing<a class="anchor" href="#finishing" title="Link to this section “Finishing”">#</a></h2><p>To start the application, we need to call the <code>connect</code> method.</p><pre><code class="lang-js"><span class="hljs-reserved">import</span> http from <span class="hljs-string">'http'</span>
+</code></pre><p>The output transform has the same arguments as the input transform, but is applied on all requests. Some serializers may not show the resolved value of the output transform for certain requests, such as updating and deleting. It must return the record, either synchronously or as a promise.</p><h2 id="finishing">Finishing<a class="anchor" href="#finishing" title="Link to this section “Finishing”">#</a></h2><p>To start the application, we need to call the <code>connect</code> method.</p><pre><code class="lang-js"><span class="hljs-keyword">import</span> http <span class="hljs-keyword">from</span> <span class="hljs-string">'http'</span>
 
-<span class="hljs-reserved">const</span> listener = fortune.net.http(store)
-<span class="hljs-reserved">const</span> server = http.createServer(listener)
-<span class="hljs-reserved">const</span> port = <span class="hljs-number">1337</span>
+<span class="hljs-keyword">const</span> listener = fortune.net.http(store)
+<span class="hljs-keyword">const</span> server = http.createServer(listener)
+<span class="hljs-keyword">const</span> port = <span class="hljs-number">1337</span>
 
-store.connect().<span class="hljs-keyword">then</span>(<span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> {
+store.connect().<span class="hljs-keyword">then</span>(() =&gt; {
   server.listen(port)
-  <span class="hljs-built_in">console</span>.log(`<span class="javascript">Server is listening on port ${port}...</span>`)
+  <span class="hljs-built_in">console</span>.log(`Server <span class="hljs-keyword">is</span> listening <span class="hljs-literal">on</span> port ${port}...`)
 })
 </code></pre><p>Using Fortune with HTTP is optional, but since the built-in serializers provide HTTP functionality in conjunction with the <code>fortune.net.http</code> module, it&#39;s easy to get started with it. The <code>fortune.net.http</code> module returns a listener function that accepts a <code>request</code> and <code>response</code> object that is generated by Node.js.</p><p>Starting the application:</p><pre><code class="lang-sh">$ <span class="hljs-keyword">babel-node </span>.
 </code></pre><p>Making a cURL request to the server:</p><pre><code class="lang-sh">$ curl -X GET -H <span class="hljs-string">"Accept: application/vnd.micro+json"</span> -v <span class="hljs-string">http:</span><span class="hljs-comment">//localhost:1337</span>
-</code></pre><p>The response should be the entry point, in <a href="http://micro-api.org/#entry-point">Micro API</a> format. Every Micro API entity includes hyperlinks, so the API should be mostly self-discoverable.</p></article><footer><p>&copy; 2015 &nbsp;&mdash;&nbsp; <a href="https://raw.githubusercontent.com/fortunejs/fortune/master/LICENSE">MIT License</a></p></footer></section></main></body></html>
+</code></pre><p>The response should be the entry point, in <a href="http://micro-api.org/#entry-point">Micro API</a> format. Every Micro API entity includes hyperlinks, so the API should be mostly self-discoverable.</p></article><footer><p>&copy; 2015 &nbsp;&mdash;&nbsp; <a href="https://raw.githubusercontent.com/fortunejs/fortune/master/LICENSE">MIT License</a></p></footer></body></html>
